@@ -15,7 +15,8 @@ type Entry struct {
 }
 
 var logger = setupLog()
-var templates = template.Must(template.ParseFiles("views/links.html"))
+var templates = template.Must(template.ParseFiles("views/links.html",
+																									"views/new.html"))
 var testEntries = []Entry{{"This", "one", "is a test"}}
 
 // SetupLog initializes our Logger and returns a pointer to the Logger

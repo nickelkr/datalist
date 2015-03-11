@@ -38,12 +38,12 @@ func TestIndexHandler(t *testing.T) {
 
 func TestCreateHandler(t *testing.T) {
   tests := []htmlTest{
-    {"Title Input", "<input type=\"text\" name=\"name\""},
-    {"Link Input", "<input type=\"text\n name=\"link\""},
-    {"Description Input", "<textarea name=\"description\""},
+    {"Title Input", `<input type="text" name="name"`},
+    {"Link Input", `<input type="text" name="link"`},
+    {"Description Input", `<textarea name="description"`},
   }
 
-  req, err := http.NewRequest("GET", "http://localhost/", nil)
+  req, err := http.NewRequest("GET", "http://localhost/new", nil)
   if err != nil {
     log.Fatal(err)
   }
