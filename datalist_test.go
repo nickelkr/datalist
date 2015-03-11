@@ -37,7 +37,25 @@ func TestIndexHandler(t *testing.T) {
 }
 
 func TestCreateHandler(t *testing.T) {
-  t.Skip("Create handler not yet implemented")
+  tests := []htmlTest{
+    {"Title Input", "<input type=\"text\" name=\"name\""},
+    {"Link Input", "<input type=\"text\n name=\"link\""},
+    {"Description Input", "<textarea name=\"description\""},
+  }
+
+  req, err := http.NewRequest("GET", "http://localhost/", nil)
+  if err != nil {
+    log.Fatal(err)
+  }
+
+  w := httptest.NewRecorder()
+  createHandler(w, req)
+  body := w.Body.String()
+  for _, test := range tests {
+    if !strings.Contains(body, test.shouldBe) {
+      t.Errorf("%v failed, got %v", test.name, body)
+    }
+  }
 }
 
 func TestViewHandler(t *testing.T) {
