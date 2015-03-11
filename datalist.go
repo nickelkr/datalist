@@ -48,7 +48,7 @@ func render(w http.ResponseWriter, tmpl string, entries []Entry) {
 
 // CreateHandler returns a blank form for a new source
 func createHandler(w http.ResponseWriter, r *http.Request) {
-	render(w, "new")
+	render(w, "new", nil)
 }
 
 // Index returns the front-page of newly registered data sources
