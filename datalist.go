@@ -32,6 +32,7 @@ func setupLog() *log.Logger {
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", index)
+	r.HandleFunc("/new/", createHandler)
 	http.Handle("/", r)
 
 	http.ListenAndServe(":8080", nil)
@@ -43,6 +44,11 @@ func render(w http.ResponseWriter, tmpl string, entries []Entry) {
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
+}
+
+// CreateHandler returns a blank form for a new source
+func createHandler(w http.ResponseWriter, r *http.Request) {
+	render(w, "new")
 }
 
 // Index returns the front-page of newly registered data sources
