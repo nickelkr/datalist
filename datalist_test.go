@@ -1,6 +1,8 @@
 package main
 
 import (
+  "gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
   "net/http/httptest"
   "net/http"
   "testing"
@@ -11,6 +13,39 @@ import (
 type htmlTest struct {
   name     string
   shouldBe string
+}
+
+func getConnection() *mgo.Session {
+  conn, err := mgo.Dial("localhost")
+  if err != nil {
+    log.Fatal(err)
+  }
+  return conn
+}
+
+func TestSaveNewDoc(t *testing.T) {
+  conn := getConnection()
+  defer conn.Close()
+  c := conn.DB("sources").C("sources")
+
+  source := Source{"nyc", "http://nyc.org/data", "NYC's open data"}
+  err := save(&source, nil)
+  if err != nil {
+    t.Errorf("Save failed, got %v", err)
+  }
+  result := Source{}
+  err = c.Find(bson.M{"Name" : "nyc"}).One(&result)
+  if err != nil {
+    t.Errorf("Find failed, got %v", err)
+  }
+  if source != result {
+    t.Errorf("Inserted and found not the same")
+  }
+
+}
+
+func TestSaveUpdateDoc(t *testing.T) {
+  t.Skip("Save update not yet implemented")
 }
 
 func TestIndexHandler(t *testing.T) {

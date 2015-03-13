@@ -2,22 +2,25 @@ package main
 
 import (
 	"github.com/gorilla/mux"
+//	"gopkg.in/mgo.v2"
+//	"gopkg.in/mgo.v2/bson"
 	"log"
 	"net/http"
 	"html/template"
 	"os"
 )
 
-type Entry struct {
-	Name 				string
-	Link 				string
-	Description string
+type Source struct {
+	Id					bson.ObjectId `bson:"_id"`
+	Name 				string 				`bson:"name"`
+	Link 				string				`bson:"link"`
+	Description string				`bson:"description"`
 }
 
 var logger = setupLog()
 var templates = template.Must(template.ParseFiles("views/links.html",
 																									"views/new.html"))
-var testEntries = []Entry{{"This", "one", "is a test"}}
+var testEntries = []Source{{"This", "one", "is a test"}}
 
 // SetupLog initializes our Logger and returns a pointer to the Logger
 func setupLog() *log.Logger {
@@ -40,8 +43,8 @@ func main() {
 }
 
 // Render executes the template for a given name
-func render(w http.ResponseWriter, tmpl string, entries []Entry) {
-	err := templates.ExecuteTemplate(w, tmpl+".html", entries)
+func render(w http.ResponseWriter, tmpl string, sources []Source) {
+	err := templates.ExecuteTemplate(w, tmpl+".html", sources)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
