@@ -20,7 +20,7 @@ type Source struct {
 var logger = setupLog()
 var templates = template.Must(template.ParseFiles("views/links.html",
 																									"views/new.html"))
-var testEntries = []Source{{"This", "one", "is a test"}}
+var testSources = []Source{{"This", "one", "is a test"}}
 
 // SetupLog initializes our Logger and returns a pointer to the Logger
 func setupLog() *log.Logger {
