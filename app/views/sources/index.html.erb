@@ -16,7 +16,7 @@
     <% @sources.each do |source| %>
       <tr>
         <td><%= source.name %></td>
-        <td><%= source.url %></td>
+        <td><a href="<%= source.url %>"><%= source.url %></td>
         <td><%= source.description %></td>
         <td><%= link_to 'Show', source %></td>
         <td><%= link_to 'Edit', edit_source_path(source) %></td>

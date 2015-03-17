@@ -18,10 +18,16 @@ class SourcesControllerTest < ActionController::TestCase
 
   test "should create source" do
     assert_difference('Source.count') do
-      post :create, source: { description: @source.description, name: @source.name, url: @source.url }
+      post :create, source: { description: @source.description, name: @source.name, url: 'new.com' }
     end
 
     assert_redirected_to source_path(assigns(:source))
+  end
+
+  test "should not allow duplicate urls" do
+    assert_no_difference('Source.count') do
+      post :create, source: { description: @source.description, name: @source.name, url: @source.url }
+    end
   end
 
   test "should show source" do
