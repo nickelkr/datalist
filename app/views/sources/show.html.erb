@@ -15,5 +15,7 @@
   <%= @source.description %>
 </p>
 
-<%= link_to 'Edit', edit_source_path(@source) %> |
+<% if user_signed_in? %>
+  <%= link_to 'Edit', edit_source_path(@source) %> |
+<% end %>
 <%= link_to 'Back', sources_path %>
