@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= source.name %></h3>
+  </div>
+  <div class="panel-body">
+    <% if source.url[/http/] %>
+      <a href="<%= source.url %>"><%= source.url %></a>
+    <% else %>
+      <a href="http://<%= source.url %>">http://<%= source.url %></a>
+    <% end %>
+    <br />
+    <%= source.description %>
+  </div>
+</div>

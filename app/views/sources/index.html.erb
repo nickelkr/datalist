@@ -2,6 +2,10 @@
 
 <h1>Listing Sources</h1>
 
+<% @sources.each do |source| %>
+  <%= render 'layouts/source', source: source %>
+<% end %>
+<!--
 <table>
   <thead>
     <tr>
@@ -12,11 +16,15 @@
     </tr>
   </thead>
 
-  <tbody>
+
     <% @sources.each do |source| %>
       <tr>
         <td><%= source.name %></td>
-        <td><a href="<%= source.url %>"><%= source.url %></td>
+        <% if source.url[/http/] %>
+          <td><a href="<%= source.url %>"><%= source.url %></td>
+        <% else %>
+          <td><a href="http://<%= source.url %>"><%= source.url %></td>
+        <% end %>
         <td><%= source.description %></td>
         <td><%= link_to 'Show', source %></td>
         <% if user_signed_in? %>
@@ -29,7 +37,7 @@
     <% end %>
   </tbody>
 </table>
-
+-->
 <br>
 
 <%= link_to 'New Source', new_source_path %>
