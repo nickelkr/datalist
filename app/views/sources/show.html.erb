@@ -1,5 +1,37 @@
 <p id="notice"><%= notice %></p>
 
+<div class="panel panel-primary">
+  <div class="panel-heading clearfix">
+    <h3 class="panel-title pull-left" style="padding-top: 7.5px;"><%= @source.name %></h3>
+    <div class="btn-group pull-right">
+      <%= link_to sources_path, class: "btn btn-default btn-sm" do %>
+        <i class="glyphicon glyphicon-chevron-left"></i>
+      <% end %>
+
+      <% if user_signed_in? %>
+        <%= link_to edit_source_path(@source), class: "btn btn-default btn-sm" do %>
+          <i class="glyphicon glyphicon-pencil"></i>
+        <% end %>
+
+        <% if current_user.admin? %>
+          <%= link_to @source, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-sm"  do %>
+            <i class="glyphicon glyphicon-remove"></i>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="panel-body">
+    <% if @source.url[/http/] %>
+      <a href="<%= @source.url %>"><%= @source.url %></a>
+    <% else %>
+      <a href="http://<%= @source.url %>">http://<%= @source.url %></a>
+    <% end %>
+    <br />
+    <%= @source.description %>
+  </div>
+</div>
+<!--
 <p>
   <strong>Name:</strong>
   <%= @source.name %>
@@ -18,4 +50,6 @@
 <% if user_signed_in? %>
   <%= link_to 'Edit', edit_source_path(@source) %> |
 <% end %>
+
 <%= link_to 'Back', sources_path %>
+-->
