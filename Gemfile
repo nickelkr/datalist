@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise', '~> 3.4'
 # WillPaginate for our pagination needs
 gem 'will_paginate', '~> 3.0.6'
+# WillPaginate gem for Bootstrap
+gem 'will_paginate-bootstrap'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -45,4 +47,10 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # FactoryGirl for all out awesome factories
+  gem 'factory_girl'
+
+  # Faker for creating our factories
+  gem 'faker'
 end

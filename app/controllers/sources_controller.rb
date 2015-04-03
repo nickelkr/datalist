@@ -4,7 +4,7 @@ class SourcesController < ApplicationController
   # GET /sources
   # GET /sources.json
   def index
-    @sources = Source.all
+    @sources = Source.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /sources/1

@@ -18,6 +18,7 @@
 <% @sources.each do |source| %>
   <%= render 'layouts/source', source: source %>
 <% end %>
+<%=  will_paginate @sources, renderer: BootstrapPagination::Rails %>
 <!--
 <table>
   <thead>
