@@ -7,12 +7,16 @@
 </div>
 
 <div class="col-sm-6 pull-right">
-<div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for...">
+
+  <%= form_tag '/search/', method: 'get' do %>
+    <div class="input-group">
+      <input type="text" name="search" class="form-control" placeholder="Search for...">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
+        <%= submit_tag "Go!", :name => nil, class: "btn btn-default", type: "button" %>
       </span>
     </div>
+  <% end %>
+
 </div>
 <br /><br />
 <% @sources.each do |source| %>

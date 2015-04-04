@@ -21,6 +21,10 @@ class SourcesController < ApplicationController
   def edit
   end
 
+  def search
+    @sources = Source.search params[:search]
+  end
+
   # POST /sources
   # POST /sources.json
   def create
