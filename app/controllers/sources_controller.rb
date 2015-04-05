@@ -1,10 +1,12 @@
 class SourcesController < ApplicationController
   before_action :set_source, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update]
+  before_action :is_admin?, only: [:destroy]
 
   # GET /sources
   # GET /sources.json
   def index
-    @sources = Source.paginate(:page => params[:page], :per_page => 10)
+    @sources = Source.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
   end
 
   # GET /sources/1
@@ -59,6 +61,7 @@ class SourcesController < ApplicationController
   # DELETE /sources/1.json
   def destroy
     @source.destroy
+    redirect_to(sources_url, notice: 'You need to be an admin to destroy source.') unless is_admin?
     respond_to do |format|
       format.html { redirect_to sources_url, notice: 'Source was successfully destroyed.' }
       format.json { head :no_content }
@@ -69,6 +72,11 @@ class SourcesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_source
       @source = Source.find(params[:id])
+    end
+
+    # Checks if is admin
+    def is_admin?
+      current_user.admin
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

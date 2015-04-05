@@ -19,6 +19,9 @@
 
 </div>
 <br /><br />
+<% if @sources.empty? %>
+  No matches found.
+<% end %>
 <% @sources.each do |source| %>
   <%= render 'layouts/source', source: source %>
 <% end %>

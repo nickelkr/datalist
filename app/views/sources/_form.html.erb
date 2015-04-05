@@ -12,7 +12,11 @@
   <% end %>
   <div class="panel panel-primary">
     <div class="panel-heading clearfix">
-      <h3 class="panel-title pull-left" style="padding-top: 7.5px;">New Source</h3>
+      <% if @source.name %>
+        <h3 class="panel-title pull-left" style="padding-top: 7.5px;"><%= @source.name %></h3>
+      <% else %>
+        <h3 class="panel-title pull-left" style="padding-top: 7.5px;">New Source</h3>
+      <% end %>
       <div class="btn-group pull-right">
         <%= link_to sources_path, class: "btn btn-default btn-sm" do %>
           <i class="glyphicon glyphicon-chevron-left"></i>
