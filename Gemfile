@@ -28,6 +28,14 @@ gem 'devise', '~> 3.4'
 gem 'will_paginate', '~> 3.0.6'
 # WillPaginate gem for Bootstrap
 gem 'will_paginate-bootstrap'
+# Puma for Heroku
+gem 'puma'
+
+# Deploying to Heroku
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -54,3 +62,5 @@ group :development, :test do
   # Faker for creating our factories
   gem 'faker'
 end
+
+ruby '2.2.1'
