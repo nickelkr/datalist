@@ -1,11 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<% if user_signed_in? %>
 <div class="btn-group">
   <%= link_to new_source_path, class: "btn btn-default btn-sm" do %>
     <i class="glyphicon glyphicon-plus"> Source</i>
   <% end %>
 </div>
-
+<% end %>
 <div class="col-sm-6 pull-right">
 
   <%= form_tag '/search/', method: 'get' do %>

@@ -1,6 +1,6 @@
 class SourcesController < ApplicationController
   before_action :set_source, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:new, :edit, :update]
   before_action :is_admin?, only: [:destroy]
 
   # GET /sources
